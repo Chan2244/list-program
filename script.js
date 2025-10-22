@@ -1,46 +1,37 @@
-let products = []; // Array to store product names
+const products = [];
 
-let newProduct = prompt("Enter a new product name:"); // Get user input
-productNames.push(newProduct); // Add the new product to the array
 
 function addProduct() {
-  const productInput = document.getElementById('product');
-  const productName = productInput.value.trim(); // Get product name and remove whitespace
+  const productInput = document.getElementById("product");
+  const productName = productInput.value.trim(); 
 
-  if (productName === "") {
-    alert("Please enter a product name.");
-    return; // Prevent adding empty product names
-  }
+  products.push(productName);
 
-  products.push(productName); // Add the new product to the array
-  productInput.value = ""; // Clear the input field
+  productInput.value = "";
 
-  displayProducts(); // Update the displayed list
+  // Display the updated product list
+  displayProducts();
+
 }
 
 function displayProducts() {
-  const outputDiv = document.getElementById('output');
-  outputDiv.innerHTML = ""; // Clear previous content
+  const outputDiv = document.getElementById("output");
+  outputDiv.innerHTML = ""; 
 
-  // Loop through the products array and display each item
-  for (let i = 0; i < products.length; i++) {
-    const productItem = document.createElement('p'); // Create a paragraph for each product
-    productItem.textContent = products[i]; // Set the text content
-    outputDiv.appendChild(productItem); // Add the product to the output div
+  if (products.length === 0) {
+    outputDiv.innerHTML = "<p>No products added yet.</p>";
+    return;
   }
-}
-const items = [
-  { name: "Apple" },
-  { name: "Banana"},
-  { name: "Orange" }
-];
 
-// Looping through the array of objects
-for (const item of items) {
-  console.log(`Item: ${item.name}`);
+  const ul = document.createElement("ul");
+  products.forEach((product) => {
+    console.log(product)
+    const li = document.createElement("li");
+    li.textContent = product;
+    ul.appendChild(li);
+  });
+  outputDiv.appendChild(ul);
 }
 
-// Alternatively, using forEach
-items.forEach(item => {
-  console.log(`Item: ${item.name}}`);
-})
+displayProducts();
+console.log("display products")
